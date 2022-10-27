@@ -1,0 +1,102 @@
+﻿<Window x:Class="FileHoster.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileHoster"
+        mc:Ignorable="d"
+        Icon="fileHosterIcon.png" Height="450" Width="800" WindowState="Maximized" Background="Black" ResizeMode="CanResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Topmost="False" ShowInTaskbar="True">
+    <StackPanel>
+        <Menu>
+            <MenuItem Command="{Binding SignInCommand}" Header="{local:Localizer SignInTitle}"/>
+        </Menu>
+        <TabControl TabStripPlacement="Left">
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="{local:LocalizerExtension Name=PostTitle}"/>
+                </TabItem.Header>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Image Stretch="Fill"  Source="/FileHoster;component/postbackground.jpg"/>
+                            <StackPanel>
+                                <Image Stretch="Fill"  Height="150" Width="150" Source="sendTo.png"/>
+                                <Label Content="{local:Localizer RemoteFileName}" Target="{Binding ElementName=lfn}"/>
+                                <TextBox Name="lfn" Text="{Binding RemoteFileName,Mode=TwoWay}"/>
+                                <Label Content="{local:Localizer LocalFileName}" Target="{Binding ElementName=rfn}"/>
+                                <TextBox Name="rfn" Text="{Binding LocalFileName,Mode=TwoWay}"/>
+                                <Button Command="{Binding SelectFileCommand}" Content="{local:Localizer SelectFile}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox/>
+                                    <Label Content="{local:Localizer Name='PostTitle'}"/>
+                                </StackPanel>
+                                <Button Content="{local:Localizer PostFile}" Command="{Binding PostFileCommand}"/>
+                            </StackPanel>
+                        </Grid>
+                        <GridSplitter Grid.Column="1" Width="10"/>
+                        <FlowDocumentPageViewer Grid.Column="2">
+                            <FlowDocument x:Name="entering">
+
+                            </FlowDocument>
+                        </FlowDocumentPageViewer>
+                    </Grid>
+                    <StatusBar>
+                        <TextBlock Name="textState"/>
+                        <Separator/>
+                        <ProgressBar Name="status"/>
+                    </StatusBar>
+                </StackPanel>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="{local:Localizer GetTitle}"/>
+                </TabItem.Header>
+                <Grid>
+                    <Image Source="getbackground.jpg" Stretch="Fill"/>
+                    <DockPanel>
+                        <Border>
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                                <StackPanel>
+                                    <StackPanel>
+                                        <ComboBox IsEditable="True" ItemsSource="{Binding Files,UpdateSourceTrigger=PropertyChanged}" SelectionChanged="ComboBox_SelectionChanged">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding .}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <Image Source="filesearch.png" Stretch="Fill" Height="200" Width="200"/>
+                                    </StackPanel>
+                                    <GroupBox>
+                                        <GroupBox.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="{local:Localizer DeleteTitle}" Command="{Binding DeleteCommand}"/>
+                                            </ContextMenu>
+                                        </GroupBox.ContextMenu>
+                                        <StackPanel Style="{StaticResource classic}">
+                                            <TextBlock Name="currentFileName" Text="{Binding CurrentFileName}"/>
+                                            <StackPanel Style="{StaticResource classic}">
+                                                <TextBlock Name="currentFileLength" Text="{Binding CurrentFileLength}"/>
+                                                <Expander>
+                                                    <FlowDocumentScrollViewer>
+                                                        <FlowDocument x:Name="innerData"/>
+                                                    </FlowDocumentScrollViewer>
+                                                </Expander>
+                                            </StackPanel>
+                                            <Button Command="{Binding SaveAsCommand}" Content="{local:Localizer SaveAs}"/>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Border>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Name="wind" x:Class="FileHoster.SignInDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileHoster"
+        mc:Ignorable="d"
+        Title="SignInDialog" ResizeMode="CanResize" SizeToContent="WidthAndHeight" Background="Black">
+    <Grid>
+        <StackPanel Style="{StaticResource classic}">
+            <TextBlock Text="{local:Localizer EnterUserNameTitle}"/>
+            <TextBox AcceptsReturn="False" Text="{Binding UserName,Mode=TwoWay}" TextWrapping="NoWrap" SpellCheck.IsEnabled="False"/>
+            <Expander IsExpanded="False" ExpandDirection="Down" Header="{local:Localizer PolicyTitle}">
+                <TextBlock Text="{local:Localizer PolicyDescription}"/>
+            </Expander>
+            <Border>
+                <Button HorizontalAlignment="Center" CommandParameter="{x:Reference wind}" Command="{Binding SignInCommand}" Content="{local:Localizer SignInTitle}" ToolTip="{local:Localizer SignInToolTip}"/>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,40 @@
+﻿<Application x:Class="FileHoster.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FileHoster"
+             Startup="Application_Startup" DispatcherUnhandledException="Application_DispatcherUnhandledException">
+    <Application.Resources>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.1" Color="#ff00d4"/>
+                            <GradientStop Offset="0.6" Color="#00ddff"/>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="1,1,1,1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Grayscale"/>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.1" Color="#ff00d4"/>
+                            <GradientStop Offset="0.6" Color="#00ddff"/>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="classic">
+            <Setter Property="Background" Value="Black"/>
+        </Style>
+    </Application.Resources>
+</Application>
