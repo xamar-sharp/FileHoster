@@ -12,7 +12,7 @@ namespace FileHoster.Services
 {
     public sealed class WebAPI
     {
-        internal const string ApiIP = "http://192.168.43.179:5000/filehoster/";
+        internal const string ApiIP = "http://0.0.0.0:5000/filehoster/";
         internal static HttpClient client = new HttpClient(new HttpClientHandler() { MaxConnectionsPerServer = Environment.ProcessorCount, AutomaticDecompression = DecompressionMethods.All })
         {
             MaxResponseContentBufferSize = int.MaxValue,
